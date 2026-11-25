@@ -1,8 +1,8 @@
 ##==----------------------------------------------------------------------------
-FROM ghcr.io/astral-sh/uv:0.13.10 AS uv
+FROM ghcr.io/astral-sh/uv:0.13.10@sha256:a3ea1357342c1a4bf9a0c53a3deb1b55379aefa037338d8113d5771efa01774f AS uv
 
 ##==----------------------------------------------------------------------------
-FROM debian:trixie-slim AS curl
+FROM debian:trixie-slim@sha256:8aa5a7bf5a1955bddbe7d74fcdd0b91ab30e74362a8b73af672b0481b35b44a0 AS curl
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
@@ -38,7 +38,7 @@ RUN cd /tmp \
 ##==----------------------------------------------------------------------------
 # Throwaway stage: Node is only used here to run the npm package's installer.
 # The package ships a native binary, so the final image needs no Node.
-FROM node:26-trixie-slim AS claude-code
+FROM node:26-trixie-slim@sha256:abe7e5a82b61a8ef67b315b85497c9e65173387ccf2f4a029248184b8e020be5 AS claude-code
 
 # renovate: datasource=npm depName=@anthropic-ai/claude-code
 ARG CLAUDE_CODE_VERSION=2.1.332
@@ -46,7 +46,7 @@ ARG CLAUDE_CODE_VERSION=2.1.332
 RUN npm install -g "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}"
 
 ##==----------------------------------------------------------------------------
-FROM debian:trixie-slim AS claude
+FROM debian:trixie-slim@sha256:8aa5a7bf5a1955bddbe7d74fcdd0b91ab30e74362a8b73af672b0481b35b44a0 AS claude
 
 # node:26 (non-slim) is built on buildpack-deps, so it ships git, ssh, build
 # tools etc. A plain base has none of that; list what we actually need.
