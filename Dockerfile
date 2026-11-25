@@ -12,6 +12,7 @@ RUN apt-get update \
 ##==----------------------------------------------------------------------------
 FROM curl AS asdf
 
+# renovate: datasource=github-releases depName=asdf-vm/asdf
 ARG ASDF_VERSION=v0.20.2
 ARG TARGETARCH=amd64
 
@@ -23,6 +24,7 @@ RUN cd /tmp \
 ##==----------------------------------------------------------------------------
 FROM curl AS gh
 
+# renovate: datasource=github-releases depName=cli/cli extractVersion=^v(?<version>.*)$
 ARG GH_VERSION=2.105.0
 ARG TARGETARCH=amd64
 
