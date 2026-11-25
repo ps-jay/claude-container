@@ -5,7 +5,7 @@
   "automergeStrategy": "rebase",
   "packageRules": [
     {
-      "matchUpdateTypes": ["minor", "patch", "digest", "pin"],
+      "matchUpdateTypes": ["minor", "patch", "digest", "pin", "pinDigest"],
       "groupName": "non-major dependencies",
       "automerge": true
     },
