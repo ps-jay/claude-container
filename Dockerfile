@@ -40,10 +40,10 @@ RUN cd /tmp \
 # The package ships a native binary, so the final image needs no Node.
 FROM node:26-trixie-slim AS claude-code
 
-# Cache-busting barrier
-ARG CACHEBUST=1
-RUN echo "${CACHEBUST}"
-RUN npm install -g @anthropic-ai/claude-code
+# renovate: datasource=npm depName=@anthropic-ai/claude-code
+ARG CLAUDE_CODE_VERSION=2.1.332
+
+RUN npm install -g "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}"
 
 ##==----------------------------------------------------------------------------
 FROM debian:trixie-slim AS claude
