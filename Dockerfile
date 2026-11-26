@@ -25,7 +25,7 @@ RUN cd /tmp \
 FROM curl AS gh
 
 # renovate: datasource=github-releases depName=cli/cli extractVersion=^v(?<version>.*)$
-ARG GH_VERSION=2.105.0
+ARG GH_VERSION=2.106.0
 ARG TARGETARCH=amd64
 
 RUN cd /tmp \
